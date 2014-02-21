@@ -32,6 +32,8 @@ class Periscope
             $main.html(html)
         return
 
+    parseUrlParams: () ->
+        console.log location.href
 
 window.Periscope = new Periscope()
 ###
