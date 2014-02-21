@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Eric Schorr -- Software Engineer -- @jerseyschorr
+    Dan Sherman -- Front-End Engineer -- @dsherman_nyc
+
+# THANKS
+
+    100% Day
+
+# TECHNOLOGY COLOPHON
+
+    Coffee Script, jQuery, purl
