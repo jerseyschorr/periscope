@@ -3,33 +3,50 @@ class Periscope
 
     isLoaded: false
     StaticKey: ''
+    servers = {}
 
     upScope: (opts) ->
 
-        console.log 'upScope'
-        for hosts in opts.servers
-            console.log 'host?', hosts
-#        @servers = serverObj
-#        @$main = $('#main')
+        @$main = $('#main')
+        @servers = opts.servers
 
-    loadServers: () ->
-        console.log @isLoaded
-        if @isLoaded
+        # Check url params here
+        @keys = opts.keys
+
+        console.log opts
+        @loadServers(opts.defaults)
+
+        # setup
+
+
+    loadServers: (dataArry) ->
+        console.log dataArry
             
-            $main.empty()
-            html = ''
+        @$main.empty()
+        html = ''
 
-            console.log 'LOADING!!'
-            currentServers = @servers.hosts[@DataCenter][@Environment]
+        console.log 'LOADING!!'
 
-            for host in currentServers
-                if obj.BoxType == 'all' or host.indexOf(obj.BoxType) != -1
-                    hostname = "#{host}.#{obj.Environment}.#{obj.DataCenter}.nytimes.com"
-                    url = 'http://' + hostname + '?' + Math.floor(Math.random()* 10000)
-                    console.log url
-                    html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh"></i></h2>' +
-                        '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
-            $main.html(html)
+        currentServers = @servers
+        domainstr = false
+        while dataArry.length > 1
+            h = dataArry.shift()
+            console.log h
+            if domainstr is false
+                domainstr = h
+            else
+                domainstr = "#{h}.#{domainstr}"  
+            currentServers = currentServers[h]
+
+
+        for host in currentServers
+            if host.indexOf(dataArry[0]) != -1
+                hostname = "#{host}.#{domainstr}"
+                url = 'http://' + hostname
+                console.log url
+                html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh"></i></h2>' +
+                    '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
+        @$main.html(html)
         return
 
 
