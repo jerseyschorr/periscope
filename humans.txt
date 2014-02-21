@@ -9,6 +9,8 @@
 # THANKS
 
     100% Day
+    stackoverflow
+    github
 
 # TECHNOLOGY COLOPHON
 
