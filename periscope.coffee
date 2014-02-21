@@ -49,6 +49,20 @@ class Periscope
         @$main.html(html)
         return
 
+    stripTrailingSlash: (str) ->
+        if str.substr(-1) == '/'
+            return str.substr(0, str.length - 1)
+        return str
+
+    parseUrlParams: () ->
+        # get the current page url
+        $url = $.url()
+
+        {
+          "DataCenter": @stripTrailingSlash($url.param('dc'))
+          "Environment": @stripTrailingSlash($url.param('env'))
+          "BoxType": @stripTrailingSlash($url.param('box'))
+        }
 
 window.Periscope = new Periscope()
 ###
