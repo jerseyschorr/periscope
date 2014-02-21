@@ -1,13 +1,14 @@
 
-Periscope =
+class Periscope
 
     isLoaded: false
     StaticKey: ''
 
-    upScope: () ->
+    upScope: (opts) ->
 
-        for hosts in @servers
-            console.log hosts
+        console.log 'upScope'
+        for hosts in opts.servers
+            console.log 'host?', hosts
 #        @servers = serverObj
 #        @$main = $('#main')
 
@@ -31,7 +32,8 @@ Periscope =
             $main.html(html)
         return
 
-console.log '>>>>', Periscope
+
+window.Periscope = new Periscope()
 ###
 
 periscope = new Periscope(servers)

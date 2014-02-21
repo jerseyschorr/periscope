@@ -1,9 +1,10 @@
 var Periscope = {
   isLoaded: false,
   StaticKey: '',
-  upScope: function() {
-    var hosts, _i, _len, _ref, _results;
-    _ref = this.servers;
+  upScope: function(opts) {
+
+    var hosts, _i, _len, _results;
+    _ref = opts;
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       hosts = _ref[_i];
@@ -11,6 +12,7 @@ var Periscope = {
     }
     return _results;
   },
+  
   loadServers: function() {
     var currentServers, host, hostname, html, url, _i, _len;
     console.log(this.isLoaded);
