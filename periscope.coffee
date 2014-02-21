@@ -9,18 +9,19 @@ class Periscope
 
         @$main = $('#main')
         @servers = opts.servers
-
-        # Check url params here
         @keys = opts.keys
 
-        console.log opts
-        @loadServers(opts.defaults)
+        # Check url params here
+        request = opts.defaults
+        urlparams = @parseUrlParams()
 
-        # setup
+        for param, idx in @keys
+            if urlparams[param] then request[idx] = urlparams[param]
+
+        @loadServers(request)
 
 
     loadServers: (dataArry) ->
-        console.log dataArry
             
         @$main.empty()
         html = ''
@@ -50,7 +51,7 @@ class Periscope
         return
 
     stripTrailingSlash: (str) ->
-        if str.substr(-1) == '/'
+        if str?.substr(-1) == '/'
             return str.substr(0, str.length - 1)
         return str
 
@@ -65,32 +66,4 @@ class Periscope
         }
 
 window.Periscope = new Periscope()
-###
 
-periscope = new Periscope(servers)
-gui = new dat.GUI()
-
-for x, y of servers.keys
-    gui.add periscope, x, y
-
-
-dcController = gui.add periscope, 'Data Center', ['ewr1', 'sea1']
-bxController = gui.add periscope, 'Box Type', ['fe', 'varnish', 'all']
-#staticKeyCtrl = gui.add text, 'StaticKey'
-
-envController.onChange () ->
-    loadServers(periscope)
-
-dcController.onChange () ->
-    loadServers(text)
-
-bxController.onChange () ->
-    loadServers(text)
-
-#staticKeyCtrl.onFinalChange () ->
-#    loadServers(text)
-
-
-text.isLoaded = true
-loadServers(text)
-###
