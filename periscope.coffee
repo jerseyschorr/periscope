@@ -19,10 +19,11 @@ class Periscope
             if urlparams[param] then request[idx] = urlparams[param]
 
         @loadServers(request)
+        @updateUrlParams()
 
 
     loadServers: (dataArry) ->
-            
+
         @$main.empty()
         html = ''
 
@@ -49,6 +50,29 @@ class Periscope
                     '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
         @$main.html(html)
         return
+
+    updateUrlParams: () ->
+        $( "a[data-env]" ).click (e) ->
+            console.log 'a click', $(e.target).data("env")
+            $url = $.url()
+            url = $url.attr('source')
+            currentEnv = $url.param('env')
+            url = url.replace(currentEnv,$(e.target).data("env"))
+            location.href = url
+        $( "a[data-dc]" ).click (e) ->
+            console.log 'a click', $(e.target).data("dc")
+            $url = $.url()
+            url = $url.attr('source')
+            currentEnv = $url.param('dc')
+            url = url.replace(currentEnv,$(e.target).data("dc"))
+            location.href = url
+        $( "a[data-box]" ).click (e) ->
+            console.log 'a click', $(e.target).data("box")
+            $url = $.url()
+            url = $url.attr('source')
+            currentEnv = $url.param('box')
+            url = url.replace(currentEnv,$(e.target).data("box"))
+            location.href = url
 
     stripTrailingSlash: (str) ->
         if str?.substr(-1) == '/'
