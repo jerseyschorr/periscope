@@ -29,31 +29,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Environment<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#" data-env="prd">Production</a></li>
-            <li><a href="#" data-env="stg">Staging</a></li>
-            <li><a href="#" data-env="dev">Development</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Center<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#" data-dc="ewr1">Newark (EWR)</a></li>
-            <li><a href="#" data-dc="sea1">Seattle (SEA)</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Type<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#" data-box="fe">Frontend (FE)</a></li>
-            <li><a href="#" data-box="varnish">Varnish</a></li>
-            <li><a href="#" data-box="all">All</a></li>
-          </ul>
-        </li>
-      </ul>
+      <ul class="nav navbar-nav" id="nav-bar"></ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="http://mobile.nytimes.com">
