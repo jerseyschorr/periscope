@@ -103,7 +103,7 @@ class Periscope
         for host in currentServers
             hostname = "#{host}.#{domainstr}"
             url = 'http://' + hostname
-            html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh"></i></h2>' +
+            html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh pointer"></i></h2>' +
                 '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
         @$main.html(html)
         $refreshButtons = $('.fa-refresh')
