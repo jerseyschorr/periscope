@@ -50,17 +50,18 @@ class Periscope
 
         $( "a" ).click (e) =>
             attrName = $(e.currentTarget).attr('data-env')
-            attrVal  = $(e.currentTarget)[0].innerText
-            if @keys.indexOf(attrName) != -1
-                $url = $.url()
-                url = $url.attr('source')
-                currentAttr = $url.param(attrName)
-                if url.indexOf(attrName) != -1
-                    url = url.replace("#{attrName}=#{currentAttr}", "#{attrName}=#{attrVal}")
-                else
-                    if url.indexOf('?') != -1 then url += "&" else url += '?'
-                    url += "#{attrName}=#{attrVal}"
-                location.href = url
+            if attrName?
+                attrVal  = $(e.currentTarget).html()
+                if @keys.indexOf(attrName) != -1
+                    $url = $.url()
+                    url = $url.attr('source')
+                    currentAttr = $url.param(attrName)
+                    if url.indexOf(attrName) != -1
+                        url = url.replace("#{attrName}=#{currentAttr}", "#{attrName}=#{attrVal}")
+                    else
+                        if url.indexOf('?') != -1 then url += "&" else url += '?'
+                        url += "#{attrName}=#{attrVal}"
+                    location.href = url
 
         return
 
