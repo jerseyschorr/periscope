@@ -10,6 +10,7 @@ class Periscope
         @$main = $('#main')
         @servers = opts.servers
         @keys = opts.keys
+        @regexOverride = opts.listOverride
 
         # Check url params here
         request = opts.defaults
@@ -23,18 +24,25 @@ class Periscope
 
     updateNavBar: (dataArry) ->
 
-        console.log dataArry
         nb = $('#nav-bar')
         out = []
         currentServers = @servers
 
         for key, idx in @keys
             h = @confirmHost(currentServers, dataArry[idx])
+            if @regexOverride[key]?[dataArry[idx]]
+                h = dataArry[idx]
+
             out.push '<li class="dropdown">',
                 '<a href="#" class="dropdown-toggle" data-toggle="dropdown">', key , ': <b>', h, '</b><b class="caret"></b></a>',
                 '<ul class="dropdown-menu">'
-            for child of currentServers
-                out.push '<li><a href="#" data-env="', key, '">', child, '</a></li>'
+
+            if @regexOverride[@keys[idx]]
+                for cidx, child of Object.keys(@regexOverride[key])
+                    if child != h then out.push '<li><a href="#" data-env="', key, '">', child, '</a></li>'
+            else
+                for child of currentServers
+                    out.push '<li><a href="#" data-env="', key, '">', child, '</a></li>'
             out.push '</ul></li>'
             if idx < @keys.length - 1
                 currentServers = currentServers[h]
@@ -70,22 +78,31 @@ class Periscope
 
         currentServers = @servers
         domainstr = false
-        while dataArry.length > 1
+        keyIdx = 0
+        while dataArry.length
             h = dataArry.shift()
-            h = @confirmHost(currentServers, h)
-
-            if domainstr is false
-                domainstr = h
+            if @regexOverride[@keys[keyIdx]]
+                hostList = []
+                for host in currentServers
+                    hostList.push(host) if @regexOverride[@keys[keyIdx]][h].exec(host)
+                currentServers = hostList
             else
-                domainstr = "#{h}.#{domainstr}"
-            currentServers = currentServers[h]
+                h = @confirmHost(currentServers, h)
+
+                if domainstr is false
+                    domainstr = h
+                else
+                    domainstr = h + '.' + domainstr
+
+                currentServers = currentServers[h]
+            keyIdx++
+
 
         for host in currentServers
-            if host.indexOf(dataArry[0]) != -1
-                hostname = "#{host}.#{domainstr}"
-                url = 'http://' + hostname
-                html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh"></i></h2>' +
-                    '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
+            hostname = "#{host}.#{domainstr}"
+            url = 'http://' + hostname
+            html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh"></i></h2>' +
+                '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
         @$main.html(html)
         return
 
