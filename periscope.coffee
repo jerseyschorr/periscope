@@ -106,7 +106,6 @@ class Periscope
             html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh"></i></h2>' +
                 '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
         @$main.html(html)
-        console.log $('.fa-refresh').length
         $refreshButtons = $('.fa-refresh')
         for button in $refreshButtons
             $( button ).click (e) =>
