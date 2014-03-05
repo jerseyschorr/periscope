@@ -49,6 +49,7 @@ class Periscope
         nb.append(out.join(''))
 
         $( "a" ).click (e) =>
+            e.preventDefault()
             attrName = $(e.currentTarget).attr('data-env')
             attrVal  = $(e.currentTarget)[0].innerText
             if @keys.indexOf(attrName) != -1
