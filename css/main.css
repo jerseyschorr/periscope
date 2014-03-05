@@ -1,0 +1,8 @@
+.servers h2 {
+  font-size: 1em;
+  color: #fff;
+}
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #fff;
+  background-color: #81BEF7;
+}
