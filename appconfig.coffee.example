@@ -1,0 +1,54 @@
+a = window.Periscope
+
+opts =
+    keys:      ['TopLevelDomain', 'Location', 'Env', 'Host'],
+    listOverride:
+        BoxType:
+            'Even': /0[2468]/
+            'Odd': /0[13579]/
+            'All': /.*/
+    defaults:  ['example.com', 'us', 'dev', 'All']
+
+opts.servers =
+    'example.com':
+        us:
+            dev: [
+                'www01'
+                'www02'
+            ]
+            stg: [
+                'www01'
+                'www02'
+                'www03'
+                'www04'
+            ]
+            prd: [
+                'www01'
+                'www02'
+                'www03'
+                'www04'
+                'www05'
+                'www06'
+                'www07'
+                'www08'
+            ]
+        uk:
+            stg: [
+                'www01'
+                'www02'
+                'www03'
+                'www04'
+            ]
+            prd: [
+                'www01'
+                'www02'
+                'www03'
+                'www04'
+                'www05'
+                'www06'
+                'www07'
+                'www08'
+            ]
+
+a.upScope opts
+
