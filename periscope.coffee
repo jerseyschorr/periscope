@@ -16,7 +16,7 @@ class Periscope
         request = opts.defaults
         urlparams = @parseUrlParams(opts.keys)
         @link = @parseUrlParams(['link'])?.link 
-        #if @link then $('#deeplink').val(@link)
+        if @link then $('#deeplink').val(@link)
 
         $('#linksubmit').click (e) =>
             e.preventDefault()
@@ -94,7 +94,7 @@ class Periscope
     loadServers: (dataArry) ->
 
         @$main.empty()
-        html = ''
+        html = if @link then '<div class="container">Page: ' + @link + '</div>' else ''
 
         currentServers = @servers
         domainstr = false
@@ -117,13 +117,11 @@ class Periscope
                 currentServers = currentServers[h]
             keyIdx++
 
-
         for host in currentServers
             hostname = "#{host}.#{domainstr}"
             url = 'http://' + hostname
             if @link then url = url + @link
             html += '<div class="servers"><h2>' + hostname
-            if @link then html += '<br/>' + @link
             html += ' <i class="fa fa-refresh pointer"></i></h2>' +
                 '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
         @$main.html(html)
