@@ -15,6 +15,24 @@ class Periscope
         # Check url params here
         request = opts.defaults
         urlparams = @parseUrlParams(opts.keys)
+        @link = @parseUrlParams(['link'])?.link 
+        #if @link then $('#deeplink').val(@link)
+
+        $('#linksubmit').click (e) =>
+            e.preventDefault()
+            urlVal = $('#deeplink').val()
+            if urlVal
+                deepLink = $.url(urlVal).attr('path')
+                $url = $.url()
+                url = $url.attr('source')
+                attrName = 'link'
+                currentAttr = $url.param(attrName)
+                if url.indexOf(attrName) != -1
+                    url = url.replace("#{attrName}=#{currentAttr}", "#{attrName}=#{deepLink}")
+                else
+                    if url.indexOf('?') != -1 then url += "&" else url += '?'
+                    url += "#{attrName}=#{deepLink}"
+                location.href = url
 
         for param, idx in @keys
             if urlparams[param] then request[idx] = urlparams[param]
@@ -103,7 +121,10 @@ class Periscope
         for host in currentServers
             hostname = "#{host}.#{domainstr}"
             url = 'http://' + hostname
-            html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh pointer"></i></h2>' +
+            if @link then url = url + @link
+            html += '<div class="servers"><h2>' + hostname
+            if @link then html += '<br/>' + @link
+            html += ' <i class="fa fa-refresh pointer"></i></h2>' +
                 '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
         @$main.html(html)
         $refreshButtons = $('.fa-refresh')
