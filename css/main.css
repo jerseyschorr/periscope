@@ -35,3 +35,15 @@
   background-color: #009cda;
   color: #fff;
 }
+.navbar-form {
+ padding-top:8px;
+}
+.compare-mode {
+  color: #000;
+  background-color: #ff7171;
+  padding: 15px 30px;
+  font-weight: bold;
+  margin-top: -20px;
+  font-size: 1.5em;
+  text-align: right;
+}
