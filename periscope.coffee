@@ -18,9 +18,7 @@ class Periscope
         @link = @parseUrlParams(['link'])?.link 
         if @link then $('#deeplink').val(@link)
         
-        $('#home').click (e) =>
-            e.preventDefault()
-            location.href = $.url().attr("protocol") + "://" + $.url().attr("host") + ":" + $.url().attr("port")
+        $('#home').attr("href", $.url().attr("protocol") + "://" + $.url().attr("host") + ":" + $.url().attr("port"))
 
         $('#linkcompare').click (e) =>
             e.preventDefault()
