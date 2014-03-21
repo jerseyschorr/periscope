@@ -4,8 +4,30 @@
 }
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
   color: #fff;
-  background-color: #81BEF7;
+  background-color: #fff;
 }
 .pointer {
   cursor: pointer;
+}
+.navbar-brand {
+  height: 64px;
+  padding: 2px 15px;
+  background-color: #fff;
+}
+.navbar-nav {
+  /*margin-top:10px;*/
+}
+.navbar-nav>li>a {
+  padding-top:24px;
+  padding-bottom:20px;
+}
+.navbar-default .navbar-nav>li>a {
+  color:#000;
+}
+.navbar-default {
+  background-color: #eae9e9;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+  background-color: #009cda;
+  color: #fff;
 }
