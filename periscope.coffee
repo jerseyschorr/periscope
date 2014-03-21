@@ -123,7 +123,7 @@ class Periscope
             if @link then url = url + @link
             html += '<div class="servers"><h2>' + hostname
             html += ' <i class="fa fa-refresh pointer"></i></h2>' +
-                '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>'
+                '<iframe src="' + url + '" width="320"  height="480" class="iframe"></iframe></div>'
         @$main.html(html)
         $refreshButtons = $('.fa-refresh')
         for button in $refreshButtons

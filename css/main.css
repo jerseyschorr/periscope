@@ -1,3 +1,7 @@
+.iframe {
+ overflow-x:hidden;
+ overflow-y:scroll;
+}
 .servers h2 {
   font-size: 1em;
   color: #fff;
