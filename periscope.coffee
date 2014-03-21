@@ -18,6 +18,13 @@ class Periscope
         @link = @parseUrlParams(['link'])?.link 
         if @link then $('#deeplink').val(@link)
 
+        $('#linkcompare').click (e) =>
+            e.preventDefault()
+            
+        $('#comparesubmit').click (e) =>
+            e.preventDefault()
+            location.href = $.url().attr("protocol") + "://" + $.url().attr("host") + ":" + $.url().attr("port") + "/?comparelink1=" + $("#comparelink1").val() + "&comparelink2=" + $("#comparelink2").val()
+
         $('#linksubmit').click (e) =>
             e.preventDefault()
             urlVal = $('#deeplink').val()
@@ -34,11 +41,15 @@ class Periscope
                     url += "#{attrName}=#{deepLink}"
                 location.href = url
 
+
         for param, idx in @keys
             if urlparams[param] then request[idx] = urlparams[param]
 
         @updateNavBar(request)
-        @loadServers(request)
+        if @isCompareMode()
+            @compareServers()
+        else
+            @loadServers(request)
 
     updateNavBar: (dataArry) ->
 
@@ -80,10 +91,22 @@ class Periscope
                     else
                         if url.indexOf('?') != -1 then url += "&" else url += '?'
                         url += "#{attrName}=#{attrVal}"
-                    location.href = url
+                    location.href = @removeCompareString(url)
 
         return
 
+    removeCompareString: (url) ->
+        paramsToRemove = ['comparelink1','comparelink2']
+        
+        # Hack for now, find a better way to do this
+        if url.match(paramsToRemove[0])
+            for p in paramsToRemove
+                url = url.replace(p+"="+$.url().param(p),'')
+            url = url.replace("?&&","?")
+        else
+          return url
+        return url
+            
     confirmHost: (obj, key) ->
 
         keys = Object.keys(obj)
@@ -91,8 +114,28 @@ class Periscope
         return keys[0] if keys.length > 0
         return false
 
+    compareServers: () ->
+        @$main.empty()
+        $url = $.url()
+        linksToCompare = ['comparelink1','comparelink2']
+        html = '<div class="compare-mode">Compare Mode</div>'
+        for l in linksToCompare
+            html += '<div class="servers"><h2>' + $.url().param(l)
+            html += ' <i class="fa fa-refresh pointer"></i></h2>' +
+                '<iframe src="' + $.url().param(l) + '" width="320"  height="480" class="iframe"></iframe></div>'
+        @$main.html(html)
+        $refreshButtons = $('.fa-refresh')
+        for button in $refreshButtons
+            $( button ).click (e) =>
+                $(e.currentTarget).addClass('fa-spin')
+                $iframe = $(e.currentTarget).parent().parent().find('iframe')
+                $iframe.attr('src', $iframe.attr('src'))
+                setTimeout () ->
+                    $(e.currentTarget).removeClass('fa-spin')
+                ,1000
+        return        
+        
     loadServers: (dataArry) ->
-
         @$main.empty()
         html = if @link then '<div class="container">Page: ' + @link + '</div>' else ''
 
@@ -141,6 +184,9 @@ class Periscope
             return str.substr(0, str.length - 1)
         return str
 
+    isCompareMode: () ->
+        if $.url().param('comparelink1')
+            return true
     parseUrlParams: (keys) ->
         # get the current page url
         $url = $.url()
