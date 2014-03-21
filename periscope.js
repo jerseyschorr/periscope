@@ -27,7 +27,7 @@ var Periscope = {
           hostname = "" + host + "." + obj.Environment + "." + obj.DataCenter + ".nytimes.com";
           url = 'http://' + hostname + '?' + Math.floor(Math.random() * 10000);
           console.log(url);
-          html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh"></i></h2>' + '<iframe src="' + url + '" width="320"  height="480" scrolling="no"></iframe></div>';
+          html += '<div class="servers"><h2>' + hostname + ' <i class="fa fa-refresh"></i></h2>' + '<iframe src="' + url + '" width="320"  height="480" scrolling="yes" style=" overflow-x:hidden; overflow-y:scroll;"></iframe></div>';
         }
       }
       $main.html(html);
