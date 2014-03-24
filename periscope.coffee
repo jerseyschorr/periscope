@@ -120,12 +120,17 @@ class Periscope
         @$main.empty()
         $url = $.url()
         linksToCompare = ['comparelink1','comparelink2']
-        html = '<div class="compare-mode">Compare Mode</div>'
+        html = '<div class="alert alert-danger fade in" id="close-compare-mode">Compare Mode <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+</div>'
         for l in linksToCompare
             html += '<div class="servers"><h2>' + $.url().param(l)
             html += ' <i class="fa fa-refresh pointer"></i></h2>' +
                 '<iframe src="' + $.url().param(l) + '" width="320"  height="480" class="iframe"></iframe></div>'
         @$main.html(html)
+        $('#close-compare-mode').bind 'closed.bs.alert', () ->
+             console.log 'hi'
+             location.href = $.url().attr("protocol") + "://" + $.url().attr("host") + ":" + $.url().attr("port")
+
         $refreshButtons = $('.fa-refresh')
         for button in $refreshButtons
             $( button ).click (e) =>
