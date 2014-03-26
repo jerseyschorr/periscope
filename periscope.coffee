@@ -17,7 +17,7 @@ class Periscope
         urlparams = @parseUrlParams(opts.keys)
         @link = @parseUrlParams(['link'])?.link 
         if @link then $('#deeplink').val(@link)
-        
+
         $('#home').attr("href", location.href.split("?")[0])
 
         $('#home').click (e) =>
@@ -25,7 +25,7 @@ class Periscope
 
         $('#linkcompare').click (e) =>
             e.preventDefault()
-            
+
         $('#comparesubmit').click (e) =>
             e.preventDefault()
             location.href = $.url().attr("protocol") + "://" + $.url().attr("host") + ":" + $.url().attr("port") + "/?comparelink1=" + $("#comparelink1").val() + "&comparelink2=" + $("#comparelink2").val()
@@ -131,8 +131,7 @@ class Periscope
                 '<iframe src="' + $.url().param(l) + '" width="320"  height="480" class="iframe"></iframe></div>'
         @$main.html(html)
         $('#close-compare-mode').bind 'closed.bs.alert', () ->
-             console.log 'hi'
-             location.href = $.url().attr("protocol") + "://" + $.url().attr("host") + ":" + $.url().attr("port")
+             location.href = location.href.split("?")[0]
 
         $refreshButtons = $('.fa-refresh')
         for button in $refreshButtons
