@@ -28,7 +28,7 @@ class Periscope
 
         $('#comparesubmit').click (e) =>
             e.preventDefault()
-            location.href = $.url().attr("protocol") + "://" + $.url().attr("host") + ":" + $.url().attr("port") + "/?comparelink1=" + $("#comparelink1").val() + "&comparelink2=" + $("#comparelink2").val()
+            location.href = location.href.split("?")[0] + "?comparelink1=" + $("#comparelink1").val() + "&comparelink2=" + $("#comparelink2").val()
 
         $('#linksubmit').click (e) =>
             e.preventDefault()
