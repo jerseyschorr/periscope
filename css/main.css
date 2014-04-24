@@ -8,7 +8,7 @@
 }
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
   color: #fff;
-  background-color: #fff;
+  background-color: transparent;
 }
 .pointer {
   cursor: pointer;
