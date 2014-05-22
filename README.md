@@ -1,6 +1,6 @@
 # Periscope
 
-We created Periscope to help us get a dashboard view into all of servers during deployments. At a quick glance we can see our servers come to life in realtime without the need for multiple browser tabs.
+We created Periscope to help us get a dashboard view into all of servers during deployments. At a quick glance, we can monitor the status of our servers in realtime without the need for multiple browser tabs.
 
 ## Requirements
 
