@@ -1,6 +1,6 @@
 # Periscope
 
-A multi site viewer.  Why open a many tabs when one will do?
+We created Periscope to help us get a dashboard view into all of servers during deployments. At a quick glance we can see our servers come to life in realtime without the need for multiple browser tabs.
 
 ## Requirements
 
