@@ -21,7 +21,9 @@ A multi site viewer.  Why open a many tabs when one will do?
 
 The menu breaks down your url into its compenents. This allows the user to view different servers based on their menu selections. You should break your url down into logical components to allow for this. Lets use an example host to explain. If we have a top level domain of example.com, an environment of prd, and a location of us, and a host of www01. we would create a menu like this:
 
+```coffeescript
 opts.menuTitles:      ['TopLevelDomain', 'Location', 'Env', 'Host'],  
+```
 
 #### Servers (opts.servers)
 and we would set up the servers like so:
