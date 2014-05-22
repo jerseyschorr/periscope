@@ -9,13 +9,13 @@ class Periscope
 
         @$main = $('#main')
         @servers = opts.servers
-        @keys = opts.keys
+        @keys = opts.menuTitles
         @regexOverride = opts.listOverride
 
         # Check url params here
         request = opts.defaults
-        urlparams = @parseUrlParams(opts.keys)
-        @link = @parseUrlParams(['link'])?.link 
+        urlparams = @parseUrlParams(@keys)
+        @link = @parseUrlParams(['link'])?.link
         if @link then $('#deeplink').val(@link)
 
         $('#home').attr("href", location.href.split("?")[0])
@@ -102,7 +102,7 @@ class Periscope
 
     removeCompareString: (url) ->
         paramsToRemove = ['comparelink1','comparelink2']
-        
+
         # Hack for now, find a better way to do this
         if url.match(paramsToRemove[0])
             for p in paramsToRemove
@@ -111,7 +111,7 @@ class Periscope
         else
           return url
         return url
-            
+
     confirmHost: (obj, key) ->
 
         keys = Object.keys(obj)
@@ -142,8 +142,8 @@ class Periscope
                 setTimeout () ->
                     $(e.currentTarget).removeClass('fa-spin')
                 ,1000
-        return        
-        
+        return
+
     loadServers: (dataArry) ->
         @$main.empty()
         html = if @link then '<div class="container">Page: ' + @link + '</div>' else ''
