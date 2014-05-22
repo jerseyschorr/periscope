@@ -4,7 +4,7 @@ A multi site viewer.  Why open a many tabs when one will do?
 
 ## Requirements
 
- * Your favourite web server
+ * Your favourite web server. For simplicity we often use python -m SimpleHTTPServer
 
 ## Installation
 
