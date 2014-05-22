@@ -8,7 +8,7 @@ A multi site viewer.  Why open a many tabs when one will do?
 
 ## Installation
 
- * Clone me!
+ * Clone me! https://github.com/jerseyschorr/periscope.git
  
 ## Configuration
 
