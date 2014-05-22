@@ -26,17 +26,20 @@ opts.menuTitles:      ['TopLevelDomain', 'Location', 'Env', 'Host'],
 #### Servers (opts.servers)
 and we would set up the servers like so:
 
+```coffeescript
 opts.servers:
     'example.com':
         us:
             prd: [
                 'www01'
             ]
+```
 
 This is the most basic setup and venture to guess you will want something a bit more complex. So lets try one.
 
 In this exmaple you have 4 servers using 2 data centers with 2 environments each. Your appconifg would look like so:
 
+```coffeescript
 opts.servers =
     'example.com':
         us:
@@ -52,3 +55,4 @@ opts.servers =
             stg: [
                 'www01'
             ]
+```
