@@ -173,8 +173,8 @@ class Periscope
             hostname = "#{host}.#{domainstr}"
             url = 'http://' + hostname
             if @link then url = url + @link
-            html += '<div class="servers"><h2>' + hostname
-            html += ' <i class="fa fa-refresh pointer"></i></h2>' +
+            html += '<div class="servers"><h2 class="servername">' + hostname
+            html += ' <i class="fa fa-refresh pointer"></i><i class="glyphicon glyphicon-new-window popout pointer"></i></h2>' +
                 '<iframe src="' + url + '" width="320"  height="480" class="iframe"></iframe></div>'
         @$main.html(html)
         $refreshButtons = $('.fa-refresh')
@@ -186,6 +186,14 @@ class Periscope
                 setTimeout () ->
                     $(e.currentTarget).removeClass('fa-spin')
                 ,1000
+        $popoutButtons = $('.popout')
+        for button in $popoutButtons
+            $btn = $( button )
+            $btn.click (e) =>
+                server = 'http://' + $btn.parent().text()
+                window.open(server, server, 'window settings')
+
+
         return
 
     stripTrailingSlash: (str) ->
