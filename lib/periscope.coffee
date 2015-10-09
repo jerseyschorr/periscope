@@ -67,9 +67,7 @@ class Periscope
             if @regexOverride[key]?[dataArry[idx]]
                 h = dataArry[idx]
 
-            out.push '<li class="dropdown">',
-                '<a href="#" class="dropdown-toggle" data-toggle="dropdown">', key , ': <b>', h, '</b><b class="caret"></b></a>',
-                '<ul class="dropdown-menu">'
+            out.push '<li class="dropdown">', '<a href="#" class="dropdown-toggle" data-toggle="dropdown">', key , ': <b>', h, '</b><b class="caret"></b></a>', '<ul class="dropdown-menu">'
 
             if @regexOverride[@keys[idx]]
                 for cidx, child of Object.keys(@regexOverride[key])
@@ -127,8 +125,7 @@ class Periscope
 </div>'
         for l in linksToCompare
             html += '<div class="servers"><h2>' + $.url().param(l)
-            html += ' <i class="fa fa-refresh pointer"></i></h2>' +
-                '<iframe src="' + $.url().param(l) + '" width="320"  height="480" class="iframe"></iframe></div>'
+            html += ' <i class="fa fa-refresh pointer"></i></h2>' + '<iframe src="' + $.url().param(l) + '" width="320"  height="480" class="iframe"></iframe></div>'
         @$main.html(html)
         $('#close-compare-mode').bind 'closed.bs.alert', () ->
              location.href = location.href.split("?")[0]
@@ -139,9 +136,7 @@ class Periscope
                 $(e.currentTarget).addClass('fa-spin')
                 $iframe = $(e.currentTarget).parent().parent().find('iframe')
                 $iframe.attr('src', $iframe.attr('src'))
-                setTimeout () ->
-                    $(e.currentTarget).removeClass('fa-spin')
-                ,1000
+                setTimeout(() -> $(e.currentTarget).removeClass('fa-spin') ,1000)
         return
 
     loadServers: (dataArry) ->
@@ -174,8 +169,7 @@ class Periscope
             url = 'http://' + hostname
             if @link then url = url + @link
             html += '<div class="servers"><h2 class="servername">' + hostname
-            html += ' <i class="fa fa-refresh pointer"></i><i class="glyphicon glyphicon-new-window popout pointer"></i></h2>' +
-                '<iframe src="' + url + '" width="320"  height="480" class="iframe"></iframe></div>'
+            html += ' <i class="fa fa-refresh pointer"></i><i class="glyphicon glyphicon-new-window popout pointer"></i></h2>' + '<iframe src="' + url + '" width="320"  height="480" class="iframe"></iframe></div>'
         @$main.html(html)
         $refreshButtons = $('.fa-refresh')
         for button in $refreshButtons
@@ -183,9 +177,7 @@ class Periscope
                 $(e.currentTarget).addClass('fa-spin')
                 $iframe = $(e.currentTarget).parent().parent().find('iframe')
                 $iframe.attr('src', $iframe.attr('src'))
-                setTimeout () ->
-                    $(e.currentTarget).removeClass('fa-spin')
-                ,1000
+                setTimeout(() -> $(e.currentTarget).removeClass('fa-spin'), 1000)
         $popoutButtons = $('.popout')
         for button in $popoutButtons
             $btn = $( button )

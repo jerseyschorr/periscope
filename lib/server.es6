@@ -1,6 +1,6 @@
 
-import express from 'express'
-import {join}  from 'path'
+import express from 'express';
+import {join}  from 'path';
 
 const app     = express();
 const router  = express.Router();
