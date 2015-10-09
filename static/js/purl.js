@@ -245,7 +245,7 @@
         };
 
     }
-    
+
     purl.jQuery = function($){
         if ($ != null) {
             $.fn.url = function( strictMode ) {

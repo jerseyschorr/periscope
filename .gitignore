@@ -1,2 +1,2 @@
-
-appconfig.coffee
+config/appconfig.coffee
+node_modules

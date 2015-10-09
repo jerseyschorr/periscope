@@ -1,0 +1,64 @@
+{
+    "menuTitles": ["TopLevelDomain", "Location", "Env", "Host"],
+    "defaults": ["example.com", "us", "dev", "All"],
+    "listOverride": {
+        "BoxType": {
+            "Even": {
+                "type": "regex",
+                "value": "/0[2468]/"
+            },
+            "Odd": {
+                "type": "regex",
+                "value": "/0[13579]/"
+            },
+            "All": {
+                "type": "regex",
+                "value": "/.*/"
+            }
+        }
+    },
+    "servers": {
+        "example.com": {
+            "us": {
+                "dev": [
+                    "www01",
+                    "www02"
+                ],
+                "stg": [
+                    "www01",
+                    "www02",
+                    "www03",
+                    "www04"
+                ],
+                "prd": [
+                    "www01",
+                    "www02",
+                    "www03",
+                    "www04",
+                    "www05",
+                    "www06",
+                    "www07",
+                    "www08"
+                ]
+            },
+            "uk": {
+                "stg": [
+                    "www01",
+                    "www02",
+                    "www03",
+                    "www04"
+                ],
+                "prd": [
+                    "www01",
+                    "www02",
+                    "www03",
+                    "www04",
+                    "www05",
+                    "www06",
+                    "www07",
+                    "www08"
+                ]
+            }
+        }
+    }
+}
