@@ -23,13 +23,17 @@ router.get('/humans.txt', (req, res) => {
   res.sendFile(join(srcpath, '../views/humans.txt'));
 });
 
-router.get('/js/periscope.coffee', (req, res) => {
-  res.sendFile(join(srcpath, '../lib/periscope.coffee'));
+router.get('/js/periscope.js', (req, res) => {
+  res.sendFile(join(srcpath, '../build/periscope.js'));
 });
 
-// router.get('/config/appconfig.coffee', (req, res) => {
-//   res.sendFile(join(srcpath, '../config/appconfig.coffee'));
-// });
+router.get('/js/periscope.js.map', (req, res) => {
+  res.sendFile(join(srcpath, '../build/periscope.js.map'));
+});
+
+router.get('/appconfig.json', (req, res) => {
+   res.sendFile(join(srcpath, '../config/appconfig.json'));
+});
 
 
 router.get(/^[/](css|js|img)[/]/, (req, res) => {

@@ -1,2 +1,4 @@
+build/periscope.js
+build/periscope.js.map
 config/appconfig.coffee
 node_modules

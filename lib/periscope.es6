@@ -1,4 +1,4 @@
-import $ from 'jquery';
+/*global $*/
 
 class Periscope {
 
@@ -6,6 +6,13 @@ class Periscope {
         this.isLoaded = false;
         this.StaticKey =  '';
         this.servers = {};
+    }
+
+    run() {
+
+        $.getJSON('/appconfig.json', (data) => {
+            this.upScope(data);
+        });
     }
 
     upScope(opts) {
@@ -87,7 +94,7 @@ class Periscope {
             const key = this.keys[idx];
             const ref = this.regexOverride[key];
             let h = this.confirmHost(currentServers, dataArry[idx]);
-            if ((ref !== null) ? ref[dataArry[idx]] : undefined) {
+            if ((ref != null) ? ref[dataArry[idx]] : void 0) {
                 h = dataArry[idx];
             }
 
@@ -290,4 +297,5 @@ class Periscope {
 }
 
 window.Periscope = new Periscope();
+window.Periscope.run();
 
