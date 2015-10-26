@@ -18,7 +18,7 @@
   "homepage": "https://github.com/jerseyschorr/periscope#readme",
   "dependencies": {
     "babel": "^5.8.23",
-    "bootstrap": "^3.3.5",
+    "bootstrap": "3.3.5",
     "express": "^4.13.3"
   },
   "devDependencies": {

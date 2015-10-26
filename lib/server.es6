@@ -35,10 +35,15 @@ router.get('/appconfig.json', (req, res) => {
    res.sendFile(join(srcpath, '../config/appconfig.json'));
 });
 
+router.get(/^[/](bootstrap)[/]/, (req, res) => {
+  res.sendFile(join(srcpath, '../node_modules', req.url));
+});
 
 router.get(/^[/](css|js|img)[/]/, (req, res) => {
   res.sendFile(join(srcpath, '../static', req.url));
 });
+
+
 
 
 app.use('/', router);

@@ -54,3 +54,34 @@ opts =
 # Run it!
 periscope.upScope opts
 
+
+    "servers": [
+        "www01.dev.us.example.com",
+        "www02.dev.us.example.com",
+        "www01.stg.us.example.com",
+        "www02.stg.us.example.com",
+        "www03.stg.us.example.com",
+        "www04.stg.us.example.com",
+        "www01.prd.us.example.com",
+        "www02.prd.us.example.com",
+        "www03.prd.us.example.com",
+        "www04.prd.us.example.com",
+        "www05.prd.us.example.com",
+        "www06.prd.us.example.com",
+        "www07.prd.us.example.com",
+        "www08.prd.us.example.com",
+        "www01.stg.gb.example.com",
+        "www02.stg.gb.example.com",
+        "www03.stg.gb.example.com",
+        "www04.stg.gb.example.com",
+        "www01.prd.gb.example.com",
+        "www02.prd.gb.example.com",
+        "www03.prd.gb.example.com",
+        "www04.prd.gb.example.com",
+        "www05.prd.gb.example.com",
+        "www06.prd.gb.example.com",
+        "www07.prd.gb.example.com",
+        "www08.prd.gb.example.com"
+    ]
+
+

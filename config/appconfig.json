@@ -1,64 +1,47 @@
 {
-    "menuTitles": ["TopLevelDomain", "Location", "Env", "Host"],
-    "defaults": ["example.com", "us", "dev", "All"],
+    "menuTitles": ["TLD", "Domain", "Location", "Env", "Host"],
+    "defaults": ["com", "example", "us", "dev", "All"],
     "listOverride": {
-        "BoxType": {
+        "Host": {
             "Even": {
                 "type": "regex",
-                "value": "/0[2468]/"
+                "value": "0[2468]"
             },
             "Odd": {
                 "type": "regex",
-                "value": "/0[13579]/"
+                "value": "0[13579]"
             },
             "All": {
                 "type": "regex",
-                "value": "/.*/"
+                "value": ".*"
             }
         }
     },
-    "servers": {
-        "example.com": {
-            "us": {
-                "dev": [
-                    "www01",
-                    "www02"
-                ],
-                "stg": [
-                    "www01",
-                    "www02",
-                    "www03",
-                    "www04"
-                ],
-                "prd": [
-                    "www01",
-                    "www02",
-                    "www03",
-                    "www04",
-                    "www05",
-                    "www06",
-                    "www07",
-                    "www08"
-                ]
-            },
-            "uk": {
-                "stg": [
-                    "www01",
-                    "www02",
-                    "www03",
-                    "www04"
-                ],
-                "prd": [
-                    "www01",
-                    "www02",
-                    "www03",
-                    "www04",
-                    "www05",
-                    "www06",
-                    "www07",
-                    "www08"
-                ]
-            }
-        }
-    }
+    "servers": [
+        "www01.dev.us.example.com",
+        "www02.dev.us.example.com",
+        "www01.stg.us.example.com",
+        "www02.stg.us.example.com",
+        "www03.stg.us.example.com",
+        "www04.stg.us.example.com",
+        "www01.prd.us.example.com",
+        "www02.prd.us.example.com",
+        "www03.prd.us.example.com",
+        "www04.prd.us.example.com",
+        "www05.prd.us.example.com",
+        "www06.prd.us.example.com",
+        "www07.prd.us.example.com",
+        "www08.prd.us.example.com",
+        "www01.stg.gb.example.com",
+        "www02.stg.gb.example.com",
+        "www03.stg.gb.example.com",
+        "www04.stg.gb.example.com",
+        "www01.prd.gb.example.com",
+        "www02.prd.gb.example.com",
+        "www03.prd.gb.example.com",
+        "www04.prd.gb.example.com",
+        "www05.prd.gb.example.com",
+        "www06.prd.gb.example.com",
+        "www07.prd.gb.example.com",
+        "www08.prd.gb.example.com"    ]
 }

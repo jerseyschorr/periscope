@@ -3,14 +3,14 @@
 <head>
   <meta charset='UTF-8'>
 	<link rel="stylesheet" type="text/css" href="/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-  <link rel="author" href="/humans.txt">
-	<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/dat.gui.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/dat.gui.min.js"></script>
   <script type="text/javascript" src="/js/purl.js"></script>
+  <link rel="author" href="/humans.txt">
   <title>Periscope</title>
 </head>
 <body>
@@ -18,42 +18,46 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="" id="home"><img src="/img/logo.png"></a>
+      <a class="navbar-brand" href="#" id="home"><img src="/img/logo.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav" id="nav-bar"></ul>
+      <ul class="nav navbar-nav" id="nav-bar">
+      </ul>
+      <!--
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" id="deeplink" placeholder="http://mobile.nytimes.com">
         </div>
-         <button type="submit" class="btn btn-default" id="linksubmit">Submit</button>
-         <button id="linkcompare" class="btn btn-primary" data-toggle="modal" data-target="#compareModal">Compare</button>
+        <button type="submit" class="btn btn-default" id="linksubmit">Submit</button>
+        <button id="linkcompare" class="btn btn-primary" data-toggle="modal" data-target="#compareModal">Compare</button>
       </form>
+      -->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-</nav>
+  </nav>
+
 	<div id="main"></div>
 	<div class="modal fade" id="compareModal" tabindex="-1" role="dialog" aria-labelledby="compareModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 					<div class="modal-body">
 		<form class="" role="compare">
-			<label>Link 1<input type="text" class="form-control" id="comparelink1" placeholder="http://mobile.nytimes.com"></label>
-			<label>Link 2<input type="text" class="form-control" id="comparelink2" placeholder="http://mobile.stg.nytimes.com"></label>
+			<label>Link 1<input type="text" class="form-control" id="comparelink1" placeholder="url 1"></label>
+			<label>Link 2<input type="text" class="form-control" id="comparelink2" placeholder="url 2"></label>
 			<button type="submit" class="btn btn-default" id="comparesubmit">Submit</button>
 		</form>
-	</div>
-	</div>
-  </div>
-  </div>
-  <script type="text/javascript" src="/js/periscope.js"></script>
-</body>
+        	</div>
+      	</div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/js/periscope.js"></script>
+  </body>
 </html>
