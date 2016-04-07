@@ -2,81 +2,21 @@
 
 class Periscope {
 
-
     constructor() {
-        this.$main = $('#main');
         this.isLoaded = false;
-        this.StaticKey = '';
+        this.StaticKey =  '';
         this.servers = {};
+    }
+
+    run() {
+
         $.getJSON('/appconfig.json', (data) => {
             this.upScope(data);
         });
     }
 
-    upScope(data) {
-        const hostRE = new RegExp(this.buildRE(data));
-        const servers = data.servers.filter((h) => hostRE.test(h));
-        this.loadServers(servers);
-    }
+    upScope(opts) {
 
-    buildRE(data) {
-
-        const arry = [];
-        for (const idx in data.defaults) {
-            const val = data.defaults[idx];
-            if (arry.length > 0) {
-                arry.unshift('[.]');
-            }
-            if (data.overrides[data.titles[idx]] && data.overrides[data.titles[idx]][val]) {
-                arry.unshift(data.overrides[data.titles[idx]][val]);
-            }
-            else {
-                arry.unshift(val);
-            }
-        }
-        return arry.join('');
-    }
-
-    loadServers(servers) {
-        this.$main.empty();
-        let html = '';
-        // let html = (this.link) ? `<div class="container">Page: ${this.link}</div>` : '';
-
-        for (const host of servers) {
-            // const = (this.link) ? this.link : '';
-            html += `<div class="servers"><h2 class="servername">${host}
-                <i class="fa fa-refresh pointer"></i><i class="glyphicon glyphicon-new-window popout pointer"></i></h2>
-                <iframe src="http://${host}" width="320"  height="480" class="iframe"></iframe></div>`;
-        }
-        this.$main.html(html);
-
-        // const $refreshButtons = $('.fa-refresh');
-        // for (const ref in $refreshButtons) {
-        //     const button = $refreshButtons[ref];
-        //     $(button).click((e) => {
-        //         $(e.currentTarget).addClass('fa-spin');
-        //         const $iframe = $(e.currentTarget).parent().parent().find('iframe');
-        //         $iframe.attr('src', $iframe.attr('src'));
-        //         setTimeout(() => {
-        //             $(e.currentTarget).removeClass('fa-spin');
-        //         }, 1000);
-        //     });
-        // }
-
-        // const $popoutButtons = $('.popout');
-        // for (const button of $popoutButtons) {
-        //     const $btn = $(button);
-        //     $btn.click(() => {
-        //         const server = `http://${$btn.parent().text()}`;
-        //         window.open(server, server, 'window settings');
-        //     });
-        // }
-
-    }
-
-
-
-/*
         this.$main = $('#main');
         this.servers = this.createServerList(opts.servers);
         this.keys = opts.menuTitles;
@@ -93,22 +33,22 @@ class Periscope {
 
         $('#home').attr('href', location.href.split('?')[0]);
 
-        $('#home').click(() => {
+        $('#home').click( () => {
             location.href = $('#home').attr('href');
         });
 
-        $('#linkcompare').click((e) => {
+        $('#linkcompare').click( (e) => {
             e.preventDefault();
         });
 
-        $('#comparesubmit').click((e) => {
+        $('#comparesubmit').click( (e) => {
             e.preventDefault();
             let href = location.href.split('?')[0];
             href = `?comparelink1=${$('#comparelink1').val()}&comparelink2=${$('#comparelink2').val()}`;
             location.href = href;
         });
 
-        $('#linksubmit').click((e) => {
+        $('#linksubmit').click( (e) => {
             e.preventDefault();
             const urlVal = $('#deeplink').val();
             if (urlVal) {
@@ -119,7 +59,8 @@ class Periscope {
                 const currentAttr = $url.param(attrName);
                 if (url.indexOf(attrName) !== -1) {
                     url = url.replace(`${attrName}=${currentAttr}`, `${attrName}=${deepLink}`);
-                } else {
+                }
+                else {
                     url += (url.indexOf('?') !== -1) ? '&' : '?';
                 }
                 url += `${attrName}=${deepLink}`;
@@ -129,10 +70,10 @@ class Periscope {
 
         const request = opts.defaults;
         for (let idx = 0; idx < this.keys.length; idx += 1) {
-            const param = this.keys[idx];
-            if (urlparams[param]) {
-                request[idx] = urlparams[param];
-            }
+          const param = this.keys[idx];
+          if (urlparams[param]) {
+            request[idx] = urlparams[param];
+          }
         }
 
         this.updateNavBar(request);
@@ -170,7 +111,8 @@ class Periscope {
                         out += `<li><a href="#" data-env="${key}">${child}</a></li>`;
                     }
                 }
-            } else {
+            }
+            else {
                 const serverKeys = Object.keys(currentServers);
                 for (const ref in serverKeys) {
                     const child = serverKeys[ref];
@@ -185,7 +127,7 @@ class Periscope {
         }
         nb.append(out);
 
-        $('a').click((e) => {
+        $('a').click( (e) => {
             console.log('click...', e);
             e.preventDefault();
             const attrName = $(e.currentTarget).attr('data-env');
@@ -197,7 +139,8 @@ class Periscope {
                     const currentAttr = $url.param(attrName);
                     if (url.indexOf(attrName) !== -1) {
                         url = url.replace(`${attrName}=${currentAttr}`, `${attrName}=${attrVal}`);
-                    } else {
+                    }
+                    else {
                         url += (url.indexOf('?') !== -1) ? '&' : '?';
                         url += `${attrName}=${attrVal}`;
                     }
@@ -209,7 +152,7 @@ class Periscope {
     }
 
     removeCompareString(url) {
-        const paramsToRemove = ['comparelink1', 'comparelink2'];
+        const paramsToRemove = ['comparelink1','comparelink2'];
 
         // Hack for now, find a better way to do this
         if (url.match(paramsToRemove[0])) {
@@ -217,7 +160,7 @@ class Periscope {
                 const p = paramsToRemove[ref];
                 url = url.replace(`${p}=${$.url().param(p)}`, '');
             }
-            url = url.replace('?&&', '?');
+            url = url.replace('?&&','?');
         }
         return url;
     }
@@ -266,6 +209,80 @@ class Periscope {
     //     return;
     // }
 
+    loadServers(dataArry) {
+        this.$main.empty();
+        let html = (this.link) ? `<div class="container">Page: ${this.link}</div>` : '';
+
+        let currentServers = this.servers;
+        let domainstr = false;
+        let keyIdx = 0;
+        console.log(dataArry, currentServers);
+        while (dataArry.length) {
+            let h = dataArry.shift();
+            console.log('h = ', h);
+            if (this.regexOverride[this.keys[keyIdx]]) {
+                const hostList = [];
+                for (const ref in currentServers) {
+                    const host = currentServers[ref];
+                    console.log('host = ', host, this.regexOverride[this.keys[keyIdx]][h]);
+                    if (typeof this.regexOverride[this.keys[keyIdx]][h] !== 'undefined') {
+                        const re = new RegExp(this.regexOverride[this.keys[keyIdx]][h].value);
+                        if (re.test(host)) {
+                            console.log('got it!');
+                            hostList.push(host);
+                        }
+                    }
+                }
+                currentServers = hostList;
+            }
+            else {
+                h = this.confirmHost(currentServers, h);
+
+                if (domainstr === false) {
+                    domainstr = h;
+                }
+                else {
+                    domainstr = `${h}.${domainstr}`;
+                }
+
+                currentServers = currentServers[h];
+            }
+            keyIdx += 1;
+        }
+
+        console.log('currentServers', currentServers);
+        for (const ref in currentServers) {
+            const host = currentServers[ref];
+            const hostname = `${host}.${domainstr}`;
+            let url = `http://${hostname}`;
+            url += (this.link) ? this.link : '';
+            html += `<div class="servers"><h2 class="servername">${hostname}
+                <i class="fa fa-refresh pointer"></i><i class="glyphicon glyphicon-new-window popout pointer"></i></h2>
+                <iframe src="${url}" width="320"  height="480" class="iframe"></iframe></div>`;
+        }
+        this.$main.html(html);
+        const $refreshButtons = $('.fa-refresh');
+        for (const ref in $refreshButtons) {
+            const button = $refreshButtons[ref];
+            $( button ).click( (e) => {
+                $(e.currentTarget).addClass('fa-spin');
+                const $iframe = $(e.currentTarget).parent().parent().find('iframe');
+                $iframe.attr('src', $iframe.attr('src'));
+                setTimeout( () => { $(e.currentTarget).removeClass('fa-spin'); }, 1000);
+            });
+        }
+        const $popoutButtons = $('.popout');
+        for (const ref in $popoutButtons) {
+            const button = $refreshButtons[ref];
+            const $btn = $( button );
+            $btn.click( () => {
+                const server = `http://${$btn.parent().text()}`;
+                window.open(server, server, 'window settings');
+            });
+        }
+
+        return;
+    }
 
     stripTrailingSlash(str) {
         if (str && str.substr(-1) === '/') {
@@ -319,7 +336,8 @@ class Periscope {
         if (newtarget.hasOwnProperty(h) === false) {
             if (hostLen === 2) {
                 newtarget[h] = [];
-            } else {
+            }
+            else {
                 newtarget[h] = {};
             }
         }
@@ -333,7 +351,8 @@ class Periscope {
             const hpart = host.shift();
             if (typeof obj === undefined) {
                 obj = hpart;
-            } else {
+            }
+            else {
                 const tmpobj = {};
                 tmpobj[hpart] = obj;
                 obj = tmpobj;
@@ -346,8 +365,8 @@ class Periscope {
         }
         return obj;
     }
-*/
+
 }
 
 window.Periscope = new Periscope();
-//window.Periscope.run();
+window.Periscope.run();
